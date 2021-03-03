@@ -21,7 +21,7 @@ class SpicyMash implements MashInterface
      * SpicyMash constructor.
      * @param string|null $masterKey
      */
-    public function __construct(?string $masterKey)
+    public function __construct(?string $masterKey = null)
     {
         $this->cipher = "aes-256-cbc";
         $this->key = $masterKey;
@@ -44,13 +44,14 @@ class SpicyMash implements MashInterface
      * @return string
      * @throws \Helper\Exception\BadKeySpicyMashException
      */
-    public function crypt(string $msg, ?string $key): string
+    public function crypt(string $msg, ?string $key = null): string
     {
         $cryptKey = $this->getCryptKey($key);
         if (empty($cryptKey)) {
             throw new BadKeySpicyMashException("Absence de clé de cryptage");
         }
-        $iv = $this->randomBytes(openssl_cipher_iv_length($this->cipher));
+        $ivLen = (int)openssl_cipher_iv_length($this->cipher);
+        $iv = $this->randomBytes($ivLen, true);
         $ciphertext = openssl_encrypt($msg, $this->cipher, $cryptKey, 0, $iv);
         if ($ciphertext === false) {
             throw new ErrorSpicyMashException("Erreur lors du cryptage du message");
@@ -64,11 +65,11 @@ class SpicyMash implements MashInterface
      * @param string|null $key
      * @return string
      */
-    public function decrypt(string $raw, ?string $key): string
+    public function decrypt(string $raw, ?string $key = null): string
     {
         $cryptKey = $this->getCryptKey($key);
         $raw = base64_decode($raw);
-        $ivLen = openssl_cipher_iv_length($this->cipher);
+        $ivLen = (int)openssl_cipher_iv_length($this->cipher);
         $crypt = substr($raw, 0, -1 * $ivLen);
         $iv = substr($raw, -1 * $ivLen);
         $msg = openssl_decrypt($crypt, $this->cipher, $cryptKey, 0, $iv);
