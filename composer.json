@@ -21,5 +21,15 @@
   },
   "scripts": {
     "test": "phpunit"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Helper\\": "./test"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Helper\\": "./src"
+    }
   }
 }
