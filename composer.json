@@ -1,0 +1,25 @@
+{
+  "name": "fzed51/spicy-mash",
+  "description": "Classe de cryptage et decryptage simplifiee se basant sur OpenSSL",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fabien Sanchez",
+      "email": "fzed51+git@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "squizlabs/php_codesniffer": "^3.5",
+    "phpstan/phpstan": "^0.12.80",
+    "ocramius/package-versions": "^2.1"
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
