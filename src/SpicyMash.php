@@ -16,6 +16,8 @@ class SpicyMash implements MashInterface
     private ?string $key;
     /** @var string méthode de cryptage */
     protected string $cipher;
+    /** @var string Algo de hashage */
+    protected string $algo;
 
     /**
      * SpicyMash constructor.
@@ -24,6 +26,7 @@ class SpicyMash implements MashInterface
     public function __construct(?string $masterKey = null)
     {
         $this->cipher = "aes-256-cbc";
+        $this->algo = "sha512";
         $this->key = $masterKey;
     }
 
@@ -105,5 +108,24 @@ class SpicyMash implements MashInterface
             return $rndBytes;
         }
         return bin2hex($rndBytes);
+    }
+
+    /**
+     * @param string $msg
+     * @param bool $raw
+     * @return string
+     */
+    public function hash(string $msg, bool $raw = false): string
+    {
+        return openssl_digest($msg, $this->algo, $raw);
+    }
+
+    /**
+     * retourne l'algorythme de hashage utilisée
+     * @return string
+     */
+    public function getAlgo(): string
+    {
+        return $this->algo;
     }
 }
