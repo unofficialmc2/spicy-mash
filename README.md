@@ -1,5 +1,5 @@
 # spicy-mash
-Classe de cryptage et décryptage simplifiée se basant sur OpenSSL
+Classe de hachage, cryptage et décryptage simplifiée se basant sur OpenSSL
 
 # Installation
 
@@ -8,6 +8,8 @@ Classe de cryptage et décryptage simplifiée se basant sur OpenSSL
 ```
 
 # Utilisation
+
+## cryptage
 
 ```php
 <?php
@@ -33,3 +35,11 @@ echo $mash->decrypt($mashed); // message
 en cas d'abscence de clé (principale et spécifique) une exception est levée.
 
 en cas de problème de décryptage une exception est levée
+
+## hachage
+
+```php
+$mash = new \Helper\SpicyMash();
+$mashed = $mash->hash('message');
+echo $mashed; // f8daf57a33..//..1770d5952c
+```
