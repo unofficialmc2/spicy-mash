@@ -20,12 +20,22 @@ interface MashInterface
      * @param string $msg
      * @param string|null $key
      * @return string
-     */public function crypt(string $msg, ?string $key = null): string;
+     */
+    public function crypt(string $msg, ?string $key = null): string;
 
     /**
      * decrypte un message
      * @param string $raw
      * @param string|null $key
      * @return string
-     */public function decrypt(string $raw, ?string $key = null): string;
+     */
+    public function decrypt(string $raw, ?string $key = null): string;
+
+    /**
+     * hash un message
+     * @param string $msg
+     * @param bool $raw
+     * @return string
+     */
+    public function hash(string $msg, bool $raw = false): string;
 }
