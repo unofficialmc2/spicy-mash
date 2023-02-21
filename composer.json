@@ -1,12 +1,12 @@
 {
-  "name": "fzed51/spicy-mash",
+  "name": "unofficialmc2/spicy-mash",
   "description": "Classe de cryptage et decryptage simplifiee se basant sur OpenSSL",
   "type": "library",
   "license": "MIT",
   "authors": [
     {
       "name": "Fabien Sanchez",
-      "email": "fzed51+git@gmail.com"
+      "email": "fabien.sanchez@arche-mc2.fr"
     }
   ],
   "minimum-stability": "stable",
